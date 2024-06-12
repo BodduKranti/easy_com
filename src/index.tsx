@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { RouterProvider } from 'react-router-dom';
+import { RouterNav } from './utility/RouterNavigation';
+import ReduxtProvider from './redux-store/ReduxtProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <ReduxtProvider>
+      <RouterProvider router={RouterNav} />
+    </ReduxtProvider>
   </React.StrictMode>
 );
 
