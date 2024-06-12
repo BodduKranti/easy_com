@@ -1,9 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../pages/Home/Home";
-import Product from "../pages/Product/Product";
 import App from "../App";
-import About from "../pages/About/About";
-import Productsignlepage from "../pages/Product/Productsignlepage";
+import { About, Cart, Forgetpwd, Home, Login, Product, Productsignlepage, Register } from "../pages";
 
 export const RouterNav = createBrowserRouter([
     {
@@ -25,6 +22,22 @@ export const RouterNav = createBrowserRouter([
             {
                 path: "/about",
                 element: <About />
+            },
+            {
+                path: "/login",
+                element: <Login />
+            },
+            {
+                path: "/register",
+                element: <Register />
+            },
+            {
+                path: "/forgotpwd",
+                element: <Forgetpwd />
+            },
+            {
+                path: "/cart",
+                element: <Cart />
             }
         ]
     }

@@ -1,0 +1,8 @@
+export { default as Home } from './Home/Home'
+export { default as About } from './About/About'
+export { default as Login } from './Login/Login'
+export { default as Product } from './Product/Product'
+export { default as Productsignlepage } from './Product/Productsignlepage'
+export { default as Cart } from './Cart/Cart'
+export { default as Register } from './Register/Register'
+export { default as Forgetpwd } from './Forget/Forgetpwd'

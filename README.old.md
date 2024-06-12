@@ -9,3 +9,9 @@ npm install --save typescript @types/node @types/react @types/react-dom @types/j
 npm install @reduxjs/toolkit react-redux
 npm install -D tailwindcss
 npx tailwindcss init
+npm i @tailwindcss/aspect-ratio
+npm i @tailwindcss/forms
+npm i react-slick --save
+npm i @types/react-slick
+npm i slick-carousel --save
+npm i react-icons
