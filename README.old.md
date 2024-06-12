@@ -15,3 +15,4 @@ npm i react-slick --save
 npm i @types/react-slick
 npm i slick-carousel --save
 npm i react-icons
+ npm install -g serve
