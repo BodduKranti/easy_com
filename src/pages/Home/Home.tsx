@@ -7,9 +7,6 @@ const Home = () => {
 
     return (
         <>
-            <h2 className='text-green-500 font-bold'>
-                Home {productTitle} {publicUrl}
-            </h2>
 
             {/* ========== Slick Carosuel ========= */}
             <div className='w-full overflow-hidden'>

@@ -1,5 +1,6 @@
 # easy_com
 This is React Typescript Ecommerce Website with full Stack
+
 # installed library
 npm i react-router-dom
 npm i env-cmd
@@ -12,7 +13,8 @@ npx tailwindcss init
 npm i @tailwindcss/aspect-ratio
 npm i @tailwindcss/forms
 npm i react-slick --save
-npm i @types/react-slick
 npm i slick-carousel --save
+npm i @types/react-slick
 npm i react-icons
- npm install -g serve
+npm install -g serve
+npm i @headlessui/react @heroicons/react
