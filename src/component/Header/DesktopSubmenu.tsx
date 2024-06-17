@@ -22,9 +22,9 @@ const DesktopSubmenu: FC<DesktopSubmenuprops> = ({
     return (
         <>
             <Popover className="relative">
-                <PopoverButton className="flex items-center h-full gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                <PopoverButton className="flex items-center h-full gap-x-1 text-sm font-semibold leading-6 text-[#AE1C9A]">
                     {navtitle}
-                    <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
+                    <ChevronDownIcon className="h-5 w-5 flex-none text-[#AE1C9A]" aria-hidden="true" />
                 </PopoverButton>
 
                 <Transition
@@ -35,15 +35,15 @@ const DesktopSubmenu: FC<DesktopSubmenuprops> = ({
                     leaveFrom="opacity-100 translate-y-0"
                     leaveTo="opacity-0 translate-y-1"
                 >
-                    <PopoverPanel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+                    <PopoverPanel className="absolute -left-8 top-full z-10 mt-3 w-[300px] max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                         <div className="p-4">
                             {navigation.map((item: any) => (
                                 <div
                                     key={item.name}
-                                    className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                                    className="group relative flex items-center gap-x-6 rounded-lg text-sm leading-6 hover:bg-gray-50"
                                 >
                                     <div className="flex-auto">
-                                        <Link to={item.href} className="block font-semibold text-gray-900">
+                                        <Link to={item.href} className="block px-3 py-2 rounded-3xl font-semibold text-[#AE1C9A] hover:bg-[#AE1C9A] hover:text-white">
                                             {item.name}
                                             <span className="absolute inset-0" />
                                         </Link>

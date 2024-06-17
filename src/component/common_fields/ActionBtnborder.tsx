@@ -1,11 +1,11 @@
 import { FC } from "react"
 
-interface Actionbtnprops {
+interface ActionBtnborderprops {
     btnText: any,
     onClick: any
 }
 
-const Actionbtn: FC<Actionbtnprops> = ({
+const ActionBtnborder: FC<ActionBtnborderprops> = ({
     btnText,
     onClick
 }) => {
@@ -14,9 +14,9 @@ const Actionbtn: FC<Actionbtnprops> = ({
             <button
                 type="submit"
                 onClick={onClick}
-                className="flex w-full justify-center rounded-3xl
-                bg-[#FFBB38] px-[20px] py-[12px] text-base font-semibold 
-                 leading-6 text-black shadow-md overflow-hidden relative  
+                className="flex w-full justify-center rounded-3xl border
+                border-[#AE1C9A] px-[20px] py-[12px] text-base font-semibold 
+                 leading-6 text-[#AE1C9A] shadow-md overflow-hidden relative  
                  transition-[all_0.15s_ease-in-out]
                  duration-300
                 hover:text-white
@@ -42,4 +42,4 @@ const Actionbtn: FC<Actionbtnprops> = ({
     )
 }
 
-export default Actionbtn
+export default ActionBtnborder

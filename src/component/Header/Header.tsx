@@ -1,17 +1,14 @@
-import React, { Fragment, useState } from 'react'
+import { useReducer, useState } from 'react'
 import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import {
-    Popover,
-    PopoverButton,
     PopoverGroup,
-    PopoverPanel,
-    Transition,
 } from '@headlessui/react'
 import { Link } from 'react-router-dom'
 import Mobilemenu from './Mobilemenu'
 import ProfileAuth from './ProfileAuth'
 import CartHeader from './CartHeader'
 import DesktopSubmenu from './DesktopSubmenu'
+import { HeaderReducer, HeaderState } from './HeaderReducerfun'
 const Header = () => {
     const navigation: any = [
         { name: 'Home', href: '/' },
@@ -28,6 +25,8 @@ const Header = () => {
 
     const [open, setOpen] = useState<any>(false)
 
+    const [state, dispatch] = useReducer(HeaderReducer, HeaderState)
+
     return (
         <>
             <div className="bg-white">
@@ -39,12 +38,12 @@ const Header = () => {
                     setOpen={setOpen}
                 />
                 <header className="relative bg-white">
-                    <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+                    <p className="flex h-10 items-center justify-center bg-[#EAC6E5] px-4 text-sm font-medium text-[#AE1C9A] sm:px-6 lg:px-8">
                         Get free delivery on orders over $100
                     </p>
 
-                    <nav aria-label="Top" className="w-full px-4">
-                        <div className="border-b border-gray-200">
+                    <nav aria-label="Top" className="w-full ">
+                        <div className="border-b-4 border-[#FFBB38] px-4 ">
                             <div className="flex h-16 items-center">
                                 <button
                                     type="button"
@@ -58,14 +57,14 @@ const Header = () => {
 
                                 {/* Logo */}
                                 <div className="ml-4 flex lg:ml-0">
-                                    <a href="#">
+                                    <Link to={"/"}>
                                         <span className="sr-only">Your Company</span>
                                         <img
                                             className="h-8 w-auto"
-                                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                                            src="./images/logo.webp"
                                             alt=""
                                         />
-                                    </a>
+                                    </Link>
                                 </div>
 
                                 {/* Flyout menus */}
@@ -81,7 +80,7 @@ const Header = () => {
                                                     <Link
                                                         key={page.name}
                                                         to={page.href}
-                                                        className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                                                        className="flex items-center text-base font-medium text-[#AE1C9A] hover:text-[#EAC6E5]"
                                                     >
                                                         {page.name}
                                                     </Link>
@@ -96,11 +95,11 @@ const Header = () => {
 
                                 <div className="ml-auto flex items-center">
                                     <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                                        <Link to={"/login"} className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                                        <Link to={"/login"} className="text-base font-medium text-[#AE1C9A] hover:text-[#EAC6E5]">
                                             Sign in
                                         </Link>
                                         <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                                        <Link to={"/register"} className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                                        <Link to={"/register"} className="text-base font-medium text-[#AE1C9A] hover:text-[#EAC6E5]">
                                             Create account
                                         </Link>
                                     </div>
@@ -115,7 +114,10 @@ const Header = () => {
                                         </div>
                                     </div>
 
-                                    <CartHeader />
+                                    <CartHeader
+                                        state={state}
+                                        dispatch={dispatch}
+                                    />
 
                                     <ProfileAuth />
                                 </div>

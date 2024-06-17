@@ -71,7 +71,7 @@ const Login = () => {
                             <div className="flex items-center justify-end mt-2">
 
                                 <div className="text-sm">
-                                    <Link to={"/forgotpwd"} className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                    <Link to={"/forgotpwd"} className="font-semibold text-[#ae1c9a] hover:text-[#FFBB38]">
                                         Forgot password?
                                     </Link>
                                 </div>
@@ -88,7 +88,7 @@ const Login = () => {
 
                     <p className="mt-5 text-center text-sm text-gray-500">
                         Not a member ? {' '}
-                        <Link to={'/register'} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                        <Link to={'/register'} className="font-semibold leading-6 text-[#ae1c9a] hover:text-[#FFBB38]">
                             Create Your Account
                         </Link>
                     </p>
