@@ -1,1 +1,1 @@
-export const publicUrl = process.env.REACT_APP_PUBLIC_DOMAIN_URL
+export const signupUser = process.env.REACT_APP_PUBLIC_DOMAIN_URL + 'register'

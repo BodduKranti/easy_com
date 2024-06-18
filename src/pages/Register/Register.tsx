@@ -4,6 +4,9 @@ import { Registerfun, registerstate } from './RegisterReducerfun'
 import { Link } from 'react-router-dom'
 import { CameraIcon } from '@heroicons/react/20/solid'
 import { imageToBase64 } from '../../utility/ImageTobase64'
+import { toast } from 'react-toastify'
+import { ApiRequestMethod } from '../../component/CommonApiRequestmethod/CommonApiRequiest'
+import { signupUser } from '../../utility/api_url'
 
 const Register = () => {
 
@@ -23,13 +26,24 @@ const Register = () => {
         const imgfile = e.target.files[0]
         console.log(imgfile)
         const userProfile = await imageToBase64(imgfile)
-        console.log(userProfile)
-
+        dispatch({
+            type: "fieldVal",
+            payload: {
+                userimgUrl: userProfile
+            }
+        })
     }
 
-    const RegisterSubmit = (e: any) => {
+    const RegisterSubmit = async (e: any) => {
         e.preventDefault()
+        toast.success("Wow so easy!")
+        let getObj = { ...state.field }
+        console.log(signupUser)
+        await ApiRequestMethod({ method: "POST", url: signupUser, postObj: getObj })
+
     }
+
+    console.log(state)
     return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-5 lg:px-8">
@@ -37,7 +51,7 @@ const Register = () => {
 
                 <div className='w-[80px] h-[80px] group relative overflow-hidden items-center flex justify-center mx-auto border-2 border-yellow-500 rounded-full'>
                     <figure className='w-[90px] h-[90px]'>
-                        <img src='./images/person.png' className='w-full h-full object-cover' alt='user_img' />
+                        <img src={`${state.field.userimgUrl ? state.field.userimgUrl : './images/person.png'}`} className='w-full h-full object-cover' alt='user_img' />
                     </figure>
 
                     <div className=' transition-all delay-300 cursor-pointer  absolute -top-[80px] group-hover:top-[35px]'>

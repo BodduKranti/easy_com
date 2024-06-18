@@ -20,3 +20,4 @@ npm install -g serve
 npm i @headlessui/react @heroicons/react
 npm i react-toastify
 npm i react-quill
+npm i axios
