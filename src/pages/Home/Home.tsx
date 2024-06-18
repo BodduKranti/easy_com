@@ -60,7 +60,7 @@ const Home = () => {
                     breakpoint1024_dots={false}
                     breakpoint600_dots={false}
                     breakpoint480_dots={false}
-                    customHiehgt={'400px'}
+                    customHiehgt={'440px'}
                     mobilecustomHiehgt={'250px'}
                     data={HomeSlider}
                 />

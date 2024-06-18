@@ -3,6 +3,7 @@ import { Actionbtn, Inputfield } from '../../component'
 import { Registerfun, registerstate } from './RegisterReducerfun'
 import { Link } from 'react-router-dom'
 import { CameraIcon } from '@heroicons/react/20/solid'
+import { imageToBase64 } from '../../utility/ImageTobase64'
 
 const Register = () => {
 
@@ -15,6 +16,15 @@ const Register = () => {
                 [e.target.name]: e.target.value
             }
         })
+    }
+
+
+    const InputHanlePic = async (e: any) => {
+        const imgfile = e.target.files[0]
+        console.log(imgfile)
+        const userProfile = await imageToBase64(imgfile)
+        console.log(userProfile)
+
     }
 
     const RegisterSubmit = (e: any) => {
@@ -31,9 +41,10 @@ const Register = () => {
                     </figure>
 
                     <div className=' transition-all delay-300 cursor-pointer  absolute -top-[80px] group-hover:top-[35px]'>
-                        <input type='file' className='absolute left-0 right-0 mx-auto w-full h-[40px] opacity-0 border-0' />
-                        <CameraIcon className='w-5 h-5 cursor-pointer' />
-
+                        <label>
+                            <input type='file' className='hidden' onChange={InputHanlePic} />
+                            <CameraIcon className='w-5 h-5 cursor-pointer' />
+                        </label>
                     </div>
                 </div>
 

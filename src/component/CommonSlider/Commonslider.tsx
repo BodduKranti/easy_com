@@ -125,7 +125,6 @@ const Commonslider: FC<Commonsliderprops> = ({
             }
         ]
     };
-    // const customHiehgt: any = '400px'
     return (
         <>
             <div className="slider-container">
@@ -136,7 +135,7 @@ const Commonslider: FC<Commonsliderprops> = ({
                                 className={`sm:h-[${mobilecustomHiehgt}] md:h-[${customHiehgt}]`}
                                 style={{
                                     backgroundColor: `${list.bgColor ? list.bgColor : '#ffffff'}`,
-                                    // height: `${customHeight ? customHeight : '100%'}`
+                                    height: `${customHiehgt ? customHiehgt : '100%'}`
                                 }}
                             >
                                 <div className="w-full sm:flex md:flex gap-5 sm:gap-4 items-center px-4">
@@ -158,7 +157,7 @@ const Commonslider: FC<Commonsliderprops> = ({
                                         </div>
                                     </div>
                                     <div className="sm:w-2/5 md:w-2/5 h-full items-center">
-                                        <figure className={`w-full h-[${customHiehgt}]`}>
+                                        <figure className={`w-full h-[${customHiehgt}]`} style={{ height: `${customHiehgt ? customHiehgt : '100%'}` }}>
                                             <img src={list.imgThumb} alt={list.imgAlt} className=" max-w-full object-contain h-full w-full" />
                                         </figure>
 

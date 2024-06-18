@@ -18,3 +18,5 @@ npm i @types/react-slick
 npm i react-icons
 npm install -g serve
 npm i @headlessui/react @heroicons/react
+npm i react-toastify
+npm i react-quill
