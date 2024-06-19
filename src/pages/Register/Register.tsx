@@ -3,10 +3,11 @@ import { Actionbtn, Inputfield } from '../../component'
 import { Registerfun, registerstate } from './RegisterReducerfun'
 import { Link } from 'react-router-dom'
 import { CameraIcon } from '@heroicons/react/20/solid'
-import { imageToBase64 } from '../../utility/ImageTobase64'
+// import { imageToBase64 } from '../../utility/ImageTobase64'
 import { toast } from 'react-toastify'
 import { ApiRequestMethod } from '../../component/CommonApiRequestmethod/CommonApiRequiest'
-import { signupUser } from '../../utility/api_url'
+import { imagaProfileUpload, signupUser } from '../../utility/api_url'
+import axios from 'axios'
 
 const Register = () => {
 
@@ -24,14 +25,25 @@ const Register = () => {
 
     const InputHanlePic = async (e: any) => {
         const imgfile = e.target.files[0]
-        console.log(imgfile)
-        const userProfile = await imageToBase64(imgfile)
-        dispatch({
-            type: "fieldVal",
-            payload: {
-                userimgUrl: userProfile
-            }
-        })
+        const formData = new FormData();
+        formData.append('product', imgfile);
+        // const userProfile = await imageToBase64(imgfile)
+        try {
+            const response = await axios.post(imagaProfileUpload, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log(response.data);
+            dispatch({
+                type: "fieldVal",
+                payload: {
+                    userimgUrl: response.data.image_url
+                }
+            })
+        } catch (error) {
+            console.error('Error uploading file:', error);
+        }
     }
 
     const RegisterSubmit = async (e: any) => {
@@ -40,7 +52,6 @@ const Register = () => {
         let getObj = { ...state.field }
         console.log(signupUser)
         await ApiRequestMethod({ method: "POST", url: signupUser, postObj: getObj })
-
     }
 
     console.log(state)
