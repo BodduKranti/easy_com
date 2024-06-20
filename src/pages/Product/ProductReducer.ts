@@ -3,7 +3,9 @@ interface AppState {
 }
 
 export const ProductStates: AppState = {
-    field: {}
+    field: {
+        loader: false
+    }
 }
 
 export type AppAction =

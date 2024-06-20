@@ -2,19 +2,21 @@ import { FC } from "react"
 
 interface Actionbtnprops {
     btnText: any,
-    onClick: any
+    onClick: any,
+    disabled?: boolean
 }
 
 const Actionbtn: FC<Actionbtnprops> = ({
     btnText,
-    onClick
+    onClick,
+    disabled
 }) => {
     return (
         <>
             <button
                 type="submit"
                 onClick={onClick}
-                className="flex w-full justify-center rounded-3xl
+                className={`${disabled ? 'opacity-50 pointer-events-none' : 'opacity-100'} flex w-full justify-center rounded-3xl
                 bg-[#FFBB38] px-[20px] py-[12px] text-base font-semibold 
                  leading-6 text-black shadow-md overflow-hidden relative  
                  transition-[all_0.15s_ease-in-out]
@@ -33,7 +35,8 @@ const Actionbtn: FC<Actionbtnprops> = ({
                 hover:after:left-0
                 hover:after:w-full
              
-                "
+                `}
+                disabled={disabled}
             >
                 <span className=" relative z-[2]">{btnText}</span>
 

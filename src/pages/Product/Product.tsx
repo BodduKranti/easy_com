@@ -1,11 +1,11 @@
-import React, { useReducer } from 'react'
+import { useReducer } from 'react'
 import { Outlet } from 'react-router-dom'
 import { RichTexteditor } from '../../component'
 import { ProductReducerFun, ProductStates } from './ProductReducer'
 
 const Product = () => {
     const [state, dispatch] = useReducer(ProductReducerFun, ProductStates)
-    console.log(state)
+
     return (
         <>
             Product
@@ -20,6 +20,8 @@ const Product = () => {
                     }
                 })}
             />
+
+            {/* <div dangerouslySetInnerHTML={{ __html: state.field.prodDesc }}></div> */}
         </>
     )
 }

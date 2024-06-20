@@ -1,2 +1,5 @@
+
+npm init -y
 npm i express mongoose nodemon cors dotenv multer
 npm i jsonwebtoken
+npm i bcrypt
