@@ -6,6 +6,7 @@ interface ApiMethods<T> {
     method: string;
     url: string;
     postObj?: T | {};
+    header?: {}
 }
 
 // Define the response type
@@ -17,7 +18,7 @@ interface ApiResponse<T> {
 
 // Common function to make API requests based on the ApiMethods interface
 export const ApiRequestMethod = async <T>(
-    { method, url, postObj }: ApiMethods<T>
+    { method, url, postObj, header }: ApiMethods<T>
 ): Promise<ApiResponse<T>> => {
     try {
         let response: any
@@ -27,10 +28,10 @@ export const ApiRequestMethod = async <T>(
                 response = await axios.get(url);
                 break;
             case 'POST':
-                response = await axios.post(url, postObj);
+                response = await axios.post(url, postObj, header);
                 break;
             case 'PUT':
-                response = await axios.put(url, postObj);
+                response = await axios.put(url, postObj, header);
                 break;
             case 'DELETE':
                 response = await axios.delete(url);

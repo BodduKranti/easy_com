@@ -6,4 +6,9 @@ const BcryptPwd = async (inputPassword) => {
     return hashPwd
 }
 
-module.exports = { BcryptPwd }
+const CompairBcryptPwd = async (inputPwd, dbPwd) => {
+    const MatchedPwd = await bcrypt.compare(inputPwd, dbPwd)
+    return MatchedPwd
+}
+
+module.exports = { BcryptPwd, CompairBcryptPwd }

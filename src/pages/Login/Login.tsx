@@ -1,11 +1,16 @@
-import React, { ChangeEvent, useReducer } from 'react'
+import React, { ChangeEvent, useEffect, useReducer, useState } from 'react'
 import { Actionbtn, Inputfield } from '../../component'
 import { loginReducer, loginStates } from './LoginReducerFun'
 import { Link } from 'react-router-dom'
+import { ApiRequestMethod } from '../../component/CommonApiRequestmethod/CommonApiRequiest'
+import { loginUser } from '../../utility/api_url'
+import { toast } from 'react-toastify'
+import { getCookie } from '../../utility/getToken'
 
 const Login = () => {
 
     const [state, dispatch] = useReducer(loginReducer, loginStates)
+    const [token, setToken] = useState<any>('')
 
     const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch({
@@ -17,24 +22,58 @@ const Login = () => {
     }
 
 
-    const LoginSubmit = (e: any) => {
+    const LoginSubmit = async (e: any) => {
         e.preventDefault()
+        dispatch({
+            type: "fieldVal",
+            payload: {
+                loader: true
+            }
+        })
+        const header: any = { withCredentials: true }
+        const getUser = { ...state.field }
+        const headerObj = { ...header }
+        const response = await ApiRequestMethod({ method: 'POST', url: loginUser, postObj: getUser });
+        console.log(response)
+        if (response.success) {
+            setTimeout(() => {
+                toast.success(response.data.data.message)
+                dispatch({
+                    type: "fieldVal",
+                    payload: {
+                        loader: false,
+                        email: '',
+                        password: ''
+                    }
+                })
+            }, 2000)
+        } else {
+            setTimeout(() => {
+                // toast.success(response.data.data.message)
+                dispatch({
+                    type: "fieldVal",
+                    payload: {
+                        loader: false,
+                        email: '',
+                        password: ''
+                    }
+                })
+                toast.error(response.error)
+            }, 2000)
+        }
     }
 
-    console.log(state)
-
+    useEffect(() => {
+        const token = getCookie('token')
+        console.log(token)
+    }, [])
     return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-                <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <img
-                        className="mx-auto h-10 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt="Your Company"
-                    />
-                    <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                        Sign in to your account
-                    </h2>
+                <div className='w-[80px] h-[80px] relative overflow-hidden items-center flex justify-center mx-auto border-2 border-yellow-500 rounded-full'>
+                    <figure className='w-[90px] h-[90px]'>
+                        <img src={`${state.field.userimgUrl ? state.field.userimgUrl : './images/person.png'}`} className='w-full h-full object-cover' alt='user_img' />
+                    </figure>
                 </div>
 
                 <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -80,8 +119,17 @@ const Login = () => {
 
                         <div>
                             <Actionbtn
-                                btnText={"SignIn"}
+                                btnText={
+                                    state.field.loader ?
+                                        <div className='w-full flex justify-center items-center'>
+                                            <div className='innerBtnloader'></div>
+                                        </div> :
+                                        <>
+                                            Login
+                                        </>
+                                }
                                 onClick={LoginSubmit}
+                                disabled={state.field.email && state.field.password ? false : true}
                             />
                         </div>
                     </form>

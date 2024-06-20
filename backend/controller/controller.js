@@ -1,5 +1,6 @@
 const loginRegisterUser = require("../modules/userAuth");
-const { BcryptPwd } = require("../utility/PasswordBycrpt");
+const { BcryptPwd, CompairBcryptPwd } = require("../utility/PasswordBycrpt");
+const { generateToken } = require("../utility/jwtHelper");
 
 
 // below function for create and signup for new user
@@ -34,4 +35,43 @@ const registerController = async (req, res) => {
     }
 }
 
-module.exports = { registerController }
+
+const loginController = async (req, res, next) => {
+    const { password, email } = req.body;
+    try {
+        const user = await loginRegisterUser.findOne({ email })
+        if (!user) {
+            return res.status(401).send({
+                message: "Invalid Login credential..."
+            })
+        }
+
+        const isMatch = await CompairBcryptPwd(password, user.password)
+        if (!isMatch) {
+            return res.status(401).send({
+                message: "Invalid Login credential..."
+            })
+        }
+
+        const token = generateToken(user._id)
+        console.log(token)
+
+        res.cookie("token", token, {
+            withCredentials: true,
+            httpOnly: false,
+        });
+        res.status(200).send({
+            message: "Login Successfull...",
+            user,
+            token
+        })
+        next()
+
+    } catch (error) {
+        res.status(500).send({
+            message: 'Something went wrong with api....'
+        })
+    }
+}
+
+module.exports = { registerController, loginController }
